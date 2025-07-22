@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Presale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <div class="bg-white shadow-sm px-4 sm:px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <img src="/app-logo.svg" alt="Logo" class="w-12 h-12 rounded" />
+        </div>
+        <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 sm:px-6 py-2 rounded-lg font-medium transition-colors text-sm sm:text-base">
+            Connect Wallet
+        </button>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- Left Sidebar - Hidden on mobile -->
+            <div class="hidden lg:block lg:col-span-1">
+                <nav class="space-y-2">
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                        <div class="w-5 h-5 bg-purple-100 rounded"></div>
+                        <span>Join Presale</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                        <div class="w-5 h-5 bg-purple-100 rounded"></div>
+                        <span>Purchase History</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                        <div class="w-5 h-5 bg-purple-100 rounded"></div>
+                        <span>Referral Program</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                        <div class="w-5 h-5 bg-purple-100 rounded"></div>
+                        <span>Claim Rewards</span>
+                    </a>
+                    <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                        <div class="w-5 h-5 bg-purple-100 rounded"></div>
+                        <span>Leaderboard</span>
+                    </a>
+                </nav>
+                <button class="mt-6 sm:mt-8 text-gray-600 hover:text-gray-800 text-sm transition-colors">
+                    Back to main page
+                </button>
+            </div>
+
+            <!-- Main Content -->
+            <div class="lg:col-span-2">
+                <div class="flex flex-col space-y-6 sm:space-y-8">
+                    <!-- Price Info & Chart - Top on mobile -->
+                    <div class="space-y-6 sm:space-y-8">
+                        <!-- Price Cards -->
+                        <div class="bg-gray-900 rounded-xl p-4 sm:p-6 text-white">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 space-y-3 sm:space-y-0">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center">
+                                        <span class="text-xs">C</span>
+                                    </div>
+                                    <span class="text-gray-300">Current Price</span>
+                                    <span class="font-bold">$0</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center">
+                                        <span class="text-xs">L</span>
+                                    </div>
+                                    <span class="text-gray-300">Listing Price</span>
+                                    <span class="font-bold">$0.35</span>
+                                </div>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+                                <div class="bg-purple-600 h-2 rounded-full" style="width: 75%"></div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-sm text-gray-300">USD Raised</div>
+                                <div class="text-lg sm:text-xl font-bold">1,478,998 USD / 1,478,998 USD</div>
+                            </div>
+                        </div>
+
+                        <!-- Countdown Timer - Moved here for mobile -->
+                        <div class="lg:hidden bg-purple-100 rounded-xl p-4 sm:p-6">
+                            <h3 class="text-gray-700 text-center mb-3 sm:mb-4">Time for the next round!</h3>
+                            <div class="grid grid-cols-4 gap-3 sm:gap-4 text-center">
+                                <div class="bg-white rounded-lg p-3 sm:p-4">
+                                    <div class="text-xl sm:text-2xl font-bold text-gray-800" id="days-mobile">00</div>
+                                    <div class="text-xs sm:text-sm text-gray-500">Days</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-3 sm:p-4">
+                                    <div class="text-xl sm:text-2xl font-bold text-gray-800" id="hours-mobile">06</div>
+                                    <div class="text-xs sm:text-sm text-gray-500">Hours</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-3 sm:p-4">
+                                    <div class="text-xl sm:text-2xl font-bold text-gray-800" id="minutes-mobile">50</div>
+                                    <div class="text-xs sm:text-sm text-gray-500">Minutes</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-3 sm:p-4">
+                                    <div class="text-xl sm:text-2xl font-bold text-gray-800" id="seconds-mobile">50</div>
+                                    <div class="text-xs sm:text-sm text-gray-500">Seconds</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Token Price Chart -->
+                        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-sm">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">Token price</h3>
+                            <div class="relative h-48 sm:h-64">
+                                <canvas id="priceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trading Panel -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                        <!-- Countdown Timer - Hidden on mobile, shown on desktop -->
+                        <div class="hidden lg:block bg-purple-100 rounded-xl p-6">
+                            <h3 class="text-gray-700 text-center mb-4">Time for the next round!</h3>
+                            <div class="grid grid-cols-4 gap-4 text-center">
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="text-2xl font-bold text-gray-800" id="days">00</div>
+                                    <div class="text-sm text-gray-500">Days</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="text-2xl font-bold text-gray-800" id="hours">06</div>
+                                    <div class="text-sm text-gray-500">Hours</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="text-2xl font-bold text-gray-800" id="minutes">50</div>
+                                    <div class="text-sm text-gray-500">Minutes</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <div class="text-2xl font-bold text-gray-800" id="seconds">50</div>
+                                    <div class="text-sm text-gray-500">Seconds</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trading Form -->
+                        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-sm">
+                            <!-- Sell Section -->
+                            <div class="mb-4 sm:mb-6">
+                                <label class="block text-sm text-gray-600 mb-2">Sell</label>
+                                <div class="relative">
+                                    <input type="text" placeholder="Enter Amount" class="w-full p-3 sm:p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none text-sm sm:text-base">
+                                    <div class="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
+                                        <span class="text-green-600 font-medium text-sm sm:text-base">USDT</span>
+                                        <button class="bg-purple-600 text-white px-2 sm:px-3 py-1 rounded text-xs sm:text-sm">MAX</button>
+                                    </div>
+                                </div>
+                                <div class="text-xs sm:text-sm text-gray-500 mt-1">= $0</div>
+                                <div class="text-xs sm:text-sm text-gray-500">0 USDT available</div>
+                            </div>
+
+                            <!-- Buy Section -->
+                            <div class="mb-4 sm:mb-6">
+                                <label class="block text-sm text-gray-600 mb-2">Buy</label>
+                                <div class="relative">
+                                    <div class="w-full p-3 sm:p-4 border border-gray-200 rounded-lg bg-gray-50">
+                                        <div class="text-lg sm:text-xl font-bold">0.00</div>
+                                    </div>
+                                    <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                                        <span class="bg-purple-100 text-purple-600 px-2 sm:px-3 py-1 rounded font-medium text-sm sm:text-base">DXP</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bonus Info -->
+                            <div class="text-center mb-4 sm:mb-6">
+                                <span class="text-purple-600 text-xs sm:text-sm">% bonus</span>
+                                <span class="text-gray-600 text-xs sm:text-sm ml-2">Invest another 0 USDT to get a % bonus</span>
+                            </div>
+
+                            <!-- Connect Wallet Button -->
+                            <button class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 sm:py-4 px-6 rounded-lg transition-colors text-sm sm:text-base">
+                                Connect EVM Wallet
+                            </button>
+
+                            <!-- Direct Purchase Options -->
+                            <div class="mt-4 sm:mt-6">
+                                <h4 class="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">Direct purchase</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                                    <div class="flex items-center justify-between p-2 sm:p-3 border border-gray-200 rounded-lg">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-5 sm:w-6 h-5 sm:h-6 bg-black rounded-full"></div>
+                                            <span class="text-xs sm:text-sm truncate">0xbf43...EF99</span>
+                                        </div>
+                                        <button class="bg-purple-600 text-white px-2 sm:px-3 py-1 rounded text-xs">Show</button>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 sm:p-3 border border-gray-200 rounded-lg">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-5 sm:w-6 h-5 sm:h-6 bg-gray-300 rounded"></div>
+                                            <span class="text-xs sm:text-sm truncate">CS589x...1f8j</span>
+                                        </div>
+                                        <button class="bg-purple-600 text-white px-2 sm:px-3 py-1 rounded text-xs">Show</button>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize price chart
+        const ctx = document.getElementById('priceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Stage -1', 'Current stage', 'Stage I', 'Listing price'],
+                datasets: [{
+                    data: [0.00000, 0.00000, 0.00000, 0.35000],
+                    borderColor: '#8b5cf6',
+                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                    pointBackgroundColor: '#8b5cf6',
+                    pointBorderColor: '#8b5cf6',
+                    pointRadius: 6,
+                    tension: 0.4,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 0.4,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toFixed(5);
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    }
+                },
+                elements: {
+                    point: {
+                        hoverRadius: 8
+                    }
+                }
+            }
+        });
+
+        // Countdown timer function
+        function updateCountdown(elementPrefix) {
+            const days = document.getElementById(`${elementPrefix}days`);
+            const hours = document.getElementById(`${elementPrefix}hours`);
+            const minutes = document.getElementById(`${elementPrefix}minutes`);
+            const seconds = document.getElementById(`${elementPrefix}seconds`);
+
+            // Simple countdown animation
+            setInterval(() => {
+                let currentSeconds = parseInt(seconds.textContent);
+                if (currentSeconds > 0) {
+                    seconds.textContent = String(currentSeconds - 1).padStart(2, '0');
+                } else {
+                    seconds.textContent = '59';
+                    let currentMinutes = parseInt(minutes.textContent);
+                    if (currentMinutes > 0) {
+                        minutes.textContent = String(currentMinutes - 1).padStart(2, '0');
+                    } else {
+                        minutes.textContent = '59';
+                        let currentHours = parseInt(hours.textContent);
+                        if (currentHours > 0) {
+                            hours.textContent = String(currentHours - 1).padStart(2, '0');
+                        } else {
+                            hours.textContent = '23';
+                            let currentDays = parseInt(days.textContent);
+                            if (currentDays > 0) {
+                                days.textContent = String(currentDays - 1).padStart(2, '0');
+                            }
+                        }
+                    }
+                }
+            }, 1000);
+        }
+
+        // Initialize both timers (mobile and desktop)
+        updateCountdown('');
+        updateCountdown('mobile-');
+    </script>
+</body>
+</html>
