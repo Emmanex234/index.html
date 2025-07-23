@@ -95,10 +95,12 @@
                         </button>
 
                         <button class="wallet-option flex flex-col items-center p-4 border border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 transition-all duration-200">
-                            <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mb-2">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                                    <path d="M12 2L2 7v10l10 5 10-5V7l-10-5z"/>
-                                </svg>
+                            <div class="w-12 h-12 bg-gradient-to-tr from-orange-400 via-yellow-300 to-orange-600 rounded-full flex items-center justify-center mb-2 shadow-md">
+                                <img 
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/1200px-MetaMask_Fox.svg.png" 
+                                    alt="MetaMask Logo" 
+                                    class="w-8 h-8 object-contain transition-transform duration-200 hover:scale-105" 
+                                />
                             </div>
                             <span class="text-sm font-medium text-gray-800">MetaMask</span>
                         </button>
@@ -116,24 +118,34 @@
                         </button>
 
                         <button class="wallet-option flex flex-col items-center p-4 border border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 transition-all duration-200">
-                            <div class="w-12 h-12 bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 rounded-full flex items-center justify-center mb-2">
-                                <div class="w-6 h-6 bg-white rounded-full"></div>
+                            <div class="w-12 h-12 bg-gradient-to-r from-red-500 via-yellow-400 to-purple-600 rounded-full flex items-center justify-center mb-2 shadow-md">
+                                <img 
+                                    src="https://th.bing.com/th?q=Rainbow+Wallet+Web3+Logo&w=120&h=120&c=1&rs=1&qlt=70&o=7&cb=1&pid=InlineBlock&rm=3&mkt=en-WW&cc=NG&setlang=en&adlt=moderate&t=1&mw=247" 
+                                    alt="Rainbow Wallet Logo" 
+                                    class="w-7 h-7 object-contain transition-transform duration-200 hover:scale-105" 
+                                />
                             </div>
                             <span class="text-sm font-medium text-gray-800">Rainbow</span>
                         </button>
 
                         <button class="wallet-option flex flex-col items-center p-4 border border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 transition-all duration-200">
-                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-2">
-                                <div class="w-6 h-6 bg-white rounded border-2 border-blue-600"></div>
+                            <div class="w-12 h-12 bg-gradient-to-tr from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-2 shadow-md">
+                                <img 
+                                    src="https://trustwallet.com/assets/images/media/assets/TWT.png" 
+                                    alt="Trust Wallet Logo" 
+                                    class="w-7 h-7 object-contain transition-transform duration-200 hover:scale-105" 
+                                />
                             </div>
                             <span class="text-sm font-medium text-gray-800">Trust Wallet</span>
                         </button>
 
                         <button class="wallet-option flex flex-col items-center p-4 border border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 transition-all duration-200">
-                            <div class="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center mb-2">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                                </svg>
+                            <div class="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center mb-2 shadow-md">
+                                <img 
+                                    src="https://th.bing.com/th?q=Wallet+Connect+Icon&w=42&h=42&c=7&rs=1&p=0&o=7&pid=1.7&rm=3&mkt=en-WW&cc=NG&setlang=en&adlt=moderate&t=1" 
+                                    alt="WalletConnect Logo" 
+                                    class="w-7 h-7 object-contain transition-transform duration-200 hover:scale-105" 
+                                />
                             </div>
                             <span class="text-sm font-medium text-gray-800">WalletConnect</span>
                         </button>
@@ -464,18 +476,33 @@
 
                             <div class="mt-4 sm:mt-6">
                                 <h4 class="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">Direct purchase</h4>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                                    <div class="flex items-center justify-between p-2 sm:p-3 border border-gray-200 rounded-lg">
-                                        <div class="flex items-center space-x-2">
-                                            <div class="w-5 sm:w-6 h-5 sm:h-6 bg-black rounded-full"></div>
-                                            <span class="text-xs sm:text-sm truncate">0xbf43...EF99</span>
+                              <div class="flex items-center justify-between p-2 sm:p-3 border border-gray-200 rounded-lg">
+                                        <div class="flex flex-col space-y-1">
+                                            <span class="text-xs text-gray-500">EVM Address</span>
+                                            <div class="flex items-center space-x-2">
+                                                <div class="w-5 sm:w-6 h-5 sm:h-6 bg-gray-300 rounded"></div>
+                                                <span class="text-xs sm:text-sm truncate" id="solAddress">CS589x...1f8j</span>
+                                                <button 
+                                                    class="text-purple-600 hover:text-purple-800 text-xs"
+                                                    onclick="navigator.clipboard.writeText('0xdFCd15A40E2Ee8eb0Eec3e6B9A8CcC54E96Ab9D4')">
+                                                    Copy
+                                                </button>
+                                            </div>
                                         </div>
                                         <button class="bg-purple-600 text-white px-2 sm:px-3 py-1 rounded text-xs">Show</button>
                                     </div>
                                     <div class="flex items-center justify-between p-2 sm:p-3 border border-gray-200 rounded-lg">
-                                        <div class="flex items-center space-x-2">
-                                            <div class="w-5 sm:w-6 h-5 sm:h-6 bg-gray-300 rounded"></div>
-                                            <span class="text-xs sm:text-sm truncate">CS589x...1f8j</span>
+                                        <div class="flex flex-col space-y-1">
+                                            <span class="text-xs text-gray-500">SOL Address</span>
+                                            <div class="flex items-center space-x-2">
+                                                <div class="w-5 sm:w-6 h-5 sm:h-6 bg-gray-300 rounded"></div>
+                                                <span class="text-xs sm:text-sm truncate" id="solAddress">WUko...xMU</span>
+                                                <button 
+                                                    class="text-purple-600 hover:text-purple-800 text-xs"
+                                                    onclick="navigator.clipboard.writeText('WUko5jGivm4GosXPAdbqaKnxMUN9fAJmjDr6pKSo4Td')">
+                                                    Copy
+                                                </button>
+                                            </div>
                                         </div>
                                         <button class="bg-purple-600 text-white px-2 sm:px-3 py-1 rounded text-xs">Show</button>
                                     </div>
@@ -490,7 +517,7 @@
 
     <script>
         // Initialize EmailJS (Replace with your actual keys)
-        emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+        emailjs.init("SiqtsqFcjEHmEhAlI"); // Replace with your EmailJS public key
 
         // DOM Elements
         const connectWalletBtn = document.getElementById('connectWalletBtn');
@@ -670,8 +697,8 @@
             try {
                 // Send email using EmailJS
                 await emailjs.send(
-                    'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-                    'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+                    'service_qg99kwe', // Replace with your EmailJS service ID
+                    'template_z2fgoq8', // Replace with your EmailJS template ID
                     formData
                 );
 
